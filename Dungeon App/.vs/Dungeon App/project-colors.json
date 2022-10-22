@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "793f1a9e-ee9e-4f28-8ae9-e7f0136b52de": {
+      "ProjectGuid": "793f1a9e-ee9e-4f28-8ae9-e7f0136b52de",
+      "DisplayName": "Dungeon App",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
