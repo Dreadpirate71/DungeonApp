@@ -8,15 +8,13 @@ namespace Dungeon_App
     internal class Monster : Combatant
     {
         //fields
-        //private string monsterName;
         private string monsterType;
-        //private string[,] monsters;
-        private int[,] monsterStats;
         private int randomMonster;
         private int randomMonsterDamage;
         private int randomMonsterBonus;
         private Dictionary<int, Monster> monsters;
         private int monsterID;
+        
 
 
         //properties
@@ -52,16 +50,14 @@ namespace Dungeon_App
             get { return monsterType; }
             set { monsterType = value; }
         }
-       
-        /*public string[,]Monsters
+        public void displayMonsterInfo(Monster monster, int monsterMultiplier)
         {
-            get { return monsters; }
-            set { monsters = value; }
-        }*/
-        public int[,] MonsterStats
-        {
-            get { return monsterStats; }
-            set { monsterStats = value; }
+            Console.WriteLine("The monster {0} is a {1} type monster!", monster.Name, monster.MonsterType);
+            Console.WriteLine("{0} Maximum Health = {1}.", monster.Name, monster.MaxHealth * monsterMultiplier);
+            Console.WriteLine("{0} Minimum Damage = {1}.", monster.Name, monster.MinDamage * monsterMultiplier);
+            Console.WriteLine("{0} Maximum Damage = {1}.", monster.Name, monster.MaxDamage * monsterMultiplier);
+            Console.WriteLine("{0} Block = {1}.", monster.Name, monster.Block * monsterMultiplier);
         }
+
     }
 }

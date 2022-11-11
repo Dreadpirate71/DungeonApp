@@ -13,8 +13,26 @@ namespace Dungeon_App
         private int randomRoom;
         private int roomID;
         private string roomDescription;
+        private int gauntletRoomCompleted;
+        private int gauntletRoomID;
+        private bool exitRoom;
 
         //properties
+        public bool ExitRoom
+        {
+            get { return exitRoom; }
+            set { exitRoom = value; }
+        }
+        public int GauntletRoomID
+        {
+            get { return gauntletRoomID; }
+            set { gauntletRoomID = value;}
+        }
+        public int GauntletRoomCompleted
+        {
+            get { return gauntletRoomCompleted; }
+            set { gauntletRoomCompleted = value;}
+        }
         public Dictionary<int, Room> BattleRooms
         {
             get { return battleRooms; }
