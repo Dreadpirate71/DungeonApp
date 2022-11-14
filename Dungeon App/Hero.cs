@@ -49,7 +49,9 @@ namespace Dungeon_App
             character.MaxHealth += heroBonusHealth;
             character.HitChance += heroBonusDamage;
             character.MinDamage += heroBonusDamage;
-            character.Block += heroBonusBlock;            
+            character.Block += heroBonusBlock; 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("{0}, you are now have a hero level of {1}!\n", character.Name, character.HeroLevel);
         }
 
     }

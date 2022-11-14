@@ -56,7 +56,7 @@ namespace Dungeon_App
             Console.WriteLine("{0} Maximum Health = {1}.", monster.Name, monster.MaxHealth * monsterMultiplier);
             Console.WriteLine("{0} Minimum Damage = {1}.", monster.Name, monster.MinDamage * monsterMultiplier);
             Console.WriteLine("{0} Maximum Damage = {1}.", monster.Name, monster.MaxDamage * monsterMultiplier);
-            Console.WriteLine("{0} Block = {1}.", monster.Name, monster.Block * monsterMultiplier);
+            Console.WriteLine("{0} Block = {1}.\n", monster.Name, monster.Block * monsterMultiplier);
         }
 
     }

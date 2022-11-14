@@ -7,7 +7,7 @@ namespace Dungeon_App
     internal class Inventory
     {
         //fields
-        private string merchantItem;
+        private string _merchantItem;
 
         //private Dictionary<string, int> merchantInventory;
         public Dictionary<string, int> MerchantInventory
@@ -17,10 +17,10 @@ namespace Dungeon_App
         }
 
         Dictionary<string, int> merchantInventory = new Dictionary<string, int>();
-        public string MerchantItem
+        public string MerchantItemCost
         {
-            get { return merchantItem; }
-            set { merchantItem = value; }
+            get { return _merchantItem; }
+            set { _merchantItem = value; }
         }
         
 
@@ -29,44 +29,58 @@ namespace Dungeon_App
             switch (key)
             {
                 case ConsoleKey.H:
-                    //Console.WriteLine(merchantInventory["Healing Potion"]);
-                    merchantItem = "Healing Potion";
-                    character.CurrentHealth += 20;
-                    character.TotalCharacterLoot -= merchantInventory[merchantItem];
-                    Console.WriteLine("{0}, you now have a total of {1} gold!", character.Name, character.TotalCharacterLoot);
+                    _merchantItem = "Health Potion";
+                    if (character.TotalCharacterLoot < merchantInventory[_merchantItem])
+                    {
+                        Console.WriteLine("You do not have enough gold to purchase this item!\n");
+                        break;
+                    }
+                    character.MaxHealth += 20;
+                    character.TotalCharacterLoot -= merchantInventory[_merchantItem];
+                    Console.WriteLine("{0}, you now have a total of {1} gold!\n", character.Name, character.TotalCharacterLoot);
                     break;
                 case ConsoleKey.S:
                     if (character.HeroLevel >= 1)
                     {
-                        merchantItem = "Shield";
+                        _merchantItem = "Shield";
+                        if (character.TotalCharacterLoot < merchantInventory[_merchantItem])
+                        {
+                            Console.WriteLine("You do not have enough gold to purchase this item!\n");
+                            break;
+                        }
                         Shield shield = new Shield();
                         shield.ShieldBlock += character.HeroLevel * 10;
                         shield.ShieldBonusDamage += character.HeroLevel * 10;
                         character.HitDamage += shield.ShieldBonusDamage;
                         character.Block += shield.ShieldBlock;
-                        character.TotalCharacterLoot -= merchantInventory[merchantItem];
+                        character.TotalCharacterLoot -= merchantInventory[_merchantItem];
                         Console.WriteLine("{0}, your total hit damage is now {1}, and your total block is {2}", character.Name, character.HitDamage, character.Block);
                         Console.WriteLine("{0}, you now have a total of {1} gold!", character.Name, character.TotalCharacterLoot);
                     }
                     else
                     {
-                        Console.WriteLine("You need to be hero level 1 before you can purchase a shield.");
+                        Console.WriteLine("You need to be hero level 1 before you can purchase a shield.\n");
                     }
                     break;
                 case ConsoleKey.W:
                     if (character.HeroLevel > 3)
                     {
-                        merchantItem = "Hero Weapon";
+                        _merchantItem = "Hero Weapon";
+                        if (character.TotalCharacterLoot < merchantInventory[_merchantItem])
+                        {
+                            Console.WriteLine("You do not have enough gold to purchase this item!\n");
+                            break;
+                        }
                         Weapon heroWeapon = new Weapon();
                         heroWeapon.MinDamage = character.HeroLevel * 10;
                         heroWeapon.MaxDamage = character.HeroLevel * 20;
                         heroWeapon.BonusHitChance = character.HeroLevel * 10;
                         character.CharacterWeapon = heroWeapon;
-                        character.TotalCharacterLoot -= merchantInventory[merchantItem];
+                        character.TotalCharacterLoot -= merchantInventory[_merchantItem];
                     }
                     else
                     {
-                        Console.WriteLine("You need to be hero level 3 before you can purchase a hero weapon.");
+                        Console.WriteLine("You need to be hero level 3 before you can purchase a hero weapon.\n");
                     }
                     break;
                 default:
